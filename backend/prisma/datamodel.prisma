@@ -1,5 +1,6 @@
 type User {
   id: ID! @id
+  posts: [Post!]
 
   name: String!
 
@@ -7,4 +8,16 @@ type User {
   password: String!
 
   createdAt: DateTime @createdAt
+}
+
+type Post {
+  id: ID! @id
+  author: User!
+
+  title: String!
+  description: String
+  body: String
+
+  createdAt: DateTime @createdAt
+  updatedAt: DateTime @updatedAt
 }
