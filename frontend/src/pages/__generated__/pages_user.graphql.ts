@@ -1,32 +1,23 @@
-/**
- * @flow
- */
-
+/* tslint:disable */
 /* eslint-disable */
 
-'use strict';
-
-/*::
-import type { ReaderFragment } from 'relay-runtime';
-import type { FragmentReference } from "relay-runtime";
-declare export opaque type pages_user$ref: FragmentReference;
-declare export opaque type pages_user$fragmentType: pages_user$ref;
-export type pages_user = {|
-  +email: string,
-  +name: string,
-  +createdAt: ?any,
-  +$refType: pages_user$ref,
-|};
+import { ReaderFragment } from "relay-runtime";
+import { FragmentRefs } from "relay-runtime";
+export type pages_user = {
+    readonly email: string;
+    readonly name: string;
+    readonly createdAt: unknown | null;
+    readonly " $refType": "pages_user";
+};
 export type pages_user$data = pages_user;
 export type pages_user$key = {
-  +$data?: pages_user$data,
-  +$fragmentRefs: pages_user$ref,
-  ...
+    readonly " $data"?: pages_user$data;
+    readonly " $fragmentRefs": FragmentRefs<"pages_user">;
 };
-*/
 
 
-const node/*: ReaderFragment*/ = {
+
+const node: ReaderFragment = {
   "kind": "Fragment",
   "name": "pages_user",
   "type": "User",
@@ -56,7 +47,5 @@ const node/*: ReaderFragment*/ = {
     }
   ]
 };
-// prettier-ignore
-(node/*: any*/).hash = 'f0632726fa5161a82b4bcd0f5d9351e1';
-
-module.exports = node;
+(node as any).hash = 'f0632726fa5161a82b4bcd0f5d9351e1';
+export default node;
