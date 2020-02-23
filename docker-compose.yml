@@ -3,16 +3,20 @@ version: '3'
 services:
   backend:
     build: backend
+    container_name: backend
     ports:
       - "4000:4000"
     environment:
       SERVICE_PORT: 4000
+      PRISMA_ENDPOINT: http://prisma:4466
     volumes:
       - ./backend/src:/etc/app/src
+      - ./backend/prisma:/etc/app/prisma
       - ./backend/node_modules:/etc/app/node_modules
 
   prisma:
     image: prismagraphql/prisma:1.34
+    container_name: prisma
     restart: always
     ports:
       - '4466:4466'
@@ -28,6 +32,7 @@ services:
             password: prisma
   postgres:
     image: postgres:10.3
+    container_name: postgres
     restart: always
     environment:
       POSTGRES_USER: prisma

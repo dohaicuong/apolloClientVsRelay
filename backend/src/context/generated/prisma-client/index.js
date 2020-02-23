@@ -7,11 +7,15 @@ var models = [
   {
     name: "User",
     embedded: false
+  },
+  {
+    name: "Post",
+    embedded: false
   }
 ];
 exports.Prisma = prisma_lib_1.makePrismaClientClass({
   typeDefs,
   models,
-  endpoint: `http://localhost:4466`
+  endpoint: `${process.env["PRISMA_ENDPOINT"]}`
 });
 exports.prisma = new exports.Prisma();
