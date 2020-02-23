@@ -3,7 +3,7 @@ const crypto = require('./crypto')
 
 module.exports = async ({ req, res, connection }) => {
   const userId = await getUserId(req.headers)
-  const user = await prisma.user({ id: userId })
+  const user = userId ? await prisma.user({ id: userId }) : null
 
   return {
     prisma,

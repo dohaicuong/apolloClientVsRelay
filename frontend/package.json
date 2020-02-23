@@ -10,16 +10,25 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "babel-plugin-macros": "^2.8.0",
+    "babel-plugin-relay": "^9.0.0",
+    "core-js": "^2.6.5",
+    "graphql": "^14.6.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-relay": "^0.0.0-experimental-8cc94ddc",
+    "react-relay-network-modern": "^4.5.0",
     "react-scripts": "3.4.0",
+    "relay-runtime": "^9.0.0",
     "typescript": "~3.7.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "relay": "relay-compiler",
+    "gen": "graphql-codegen --config codegen.yml"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,5 +44,16 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^1.12.2",
+    "@graphql-codegen/introspection": "1.12.2",
+    "@graphql-codegen/schema-ast": "^1.12.2",
+    "@graphql-codegen/typescript": "1.12.2",
+    "@graphql-codegen/typescript-operations": "1.12.2",
+    "@types/react-relay": "^7.0.3",
+    "@types/relay-runtime": "^8.0.6",
+    "relay-compiler": "^9.0.0",
+    "relay-config": "^9.0.0"
   }
 }

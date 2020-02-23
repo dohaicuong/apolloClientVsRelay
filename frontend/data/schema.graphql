@@ -1,0 +1,107 @@
+type AggregatePost {
+  totalCount: Int!
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+enum CacheControlScope {
+  PUBLIC
+  PRIVATE
+}
+
+scalar DateTime
+
+type Mutation {
+  signup(input: UserSignupInput!): AuthPayload!
+  login(input: UserLoginInput!): AuthPayload!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type Post {
+  id: ID!
+  author: User!
+  title: String!
+  description: String
+  body: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type PostConnection {
+  pageInfo: PageInfo!
+  edges: [PostEdge]!
+  aggregate: AggregatePost!
+}
+
+type PostEdge {
+  node: Post!
+  cursor: String!
+}
+
+enum PostOrderByInput {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  description_ASC
+  description_DESC
+  body_ASC
+  body_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+input PostWhereInput {
+  AND: [PostWhereInput!]
+  OR: [PostWhereInput!]
+  NOT: [PostWhereInput!]
+  id: ID
+  title: String
+  title_in: [String!]
+  title_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+}
+
+type Query {
+  me: User
+  postsConnection(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
+}
+
+scalar Upload
+
+type User {
+  id: ID!
+  email: String!
+  name: String!
+  posts(where: UserPostsWhere): [Post!]
+  createdAt: DateTime
+}
+
+input UserLoginInput {
+  email: String!
+  password: String!
+}
+
+input UserPostsWhere {
+  title_contains: String
+}
+
+input UserSignupInput {
+  name: String!
+  email: String!
+  password: String!
+}
